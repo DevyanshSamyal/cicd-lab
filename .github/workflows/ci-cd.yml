@@ -31,3 +31,9 @@ jobs:
 
       - name: Run automated tests
         run: python -m pytest tests/ -v
+
+      - name: Build Stone Docker image
+        run: docker build -t stone:ci ./stone
+
+      - name: Build Toss Docker image
+        run: docker build -t toss:ci ./toss
