@@ -6,3 +6,12 @@ on:
     branches:
       - main
 
+jobs:
+  verify:
+    name: Verify CI Runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display confirmation
+        run: echo "GitHub Actions runner is working!"
+
