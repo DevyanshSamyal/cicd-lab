@@ -7,11 +7,27 @@ on:
       - main
 
 jobs:
-  verify:
-    name: Verify CI Runner
+  test:
+    name: Test Flask Applications
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display confirmation
-        run: echo "GitHub Actions runner is working!"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Stone dependencies
+        run: pip install -r stone/requirements.txt
+
+      - name: Install Toss dependencies
+        run: pip install -r toss/requirements.txt
+
+      - name: Install testing dependencies
+        run: pip install -r requirements-test.txt
+
+      - name: Run automated tests
+        run: python -m pytest tests/ -v
